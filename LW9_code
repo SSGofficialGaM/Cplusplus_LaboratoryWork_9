@@ -1,0 +1,139 @@
+#include <iostream>
+#include <cstdlib>
+using namespace std;
+
+int main()
+{
+    //Task 1
+    int arr_len;
+    srand(time(NULL));
+    
+    cout << "Enter a valid array length: ";
+    cin >> arr_len;
+    
+    int randNums[arr_len] = {};
+    
+    cout << "Generated values array: ";
+    for (int itr = 0; itr < arr_len; itr++) {
+        randNums[itr] = rand();
+        cout << randNums[itr] << " ";
+    }
+    cout << endl;
+    
+    int MaxElIndex = 0;
+    for (int i = 1; i < arr_len; i++) {
+        if (randNums[MaxElIndex] < randNums[i]) {
+            MaxElIndex = i;
+        }
+    }
+    
+    int MinElIndex = 0;
+    for (int j = 1; j < arr_len; j++) {
+        if (randNums[MinElIndex] > randNums[j]) {
+            MinElIndex = j;
+        }
+    }
+    
+    int a = randNums[MaxElIndex] - randNums[MinElIndex];
+    int b = -a;
+    
+    randNums[MaxElIndex] += b;
+    randNums[MinElIndex] += a;
+    
+    cout << "Modified values array: ";
+    for (int itr_new = 0; itr_new < arr_len; itr_new++) {
+        cout << randNums[itr_new] << " ";
+    }
+    
+    //Task 2
+    int length;
+    int el_amn;
+    srand(time(NULL));
+    
+    cout << "Enter an array length you want to set (make sure it's greater than 0!): ";
+    cin >> length;
+    
+    int randNums[length] = {};
+    
+    int arg_A = rand();
+    cout << "Given value of A: " << arg_A << endl;
+    
+    cout << "Given values array: ";
+    for (int count = 0; count < length; count++) {
+        randNums[count] = rand();
+        
+        cout << randNums[count] << " ";
+    }
+    cout << endl;
+    
+    for (int i = 0; i < length; i++) {
+        if (randNums[i] > arg_A) {
+            el_amn += 1;
+        }
+    }
+    cout << "The amount of elements that are greater than A: " << el_amn;
+    
+    //Task 3
+    int len;
+    srand(time(NULL));
+    
+    cout << "Enter a proper array length you'd like to set: ";
+    cin >> len;
+    
+    int randNums[len] = {};
+    
+    cout << "Starter values array: ";
+    for (int am_sc = 0; am_sc < len; am_sc++) {
+        randNums[am_sc] = rand() % 10;
+        
+        cout << randNums[am_sc] << " ";
+    }
+    cout << endl;
+    
+    int MaxElIndex = 0;
+    for (int score = 1; score < len; score++) {
+        if (randNums[MaxElIndex] < randNums[score]) {
+            MaxElIndex = score;
+        }
+    }
+    
+    int SecMaxElIndex = (MaxElIndex == 0) ? 1 : 0;
+    for (int score_sec = 1; score_sec < len; score_sec++) {
+        if (randNums[SecMaxElIndex] < randNums[score_sec] && randNums[score_sec] < randNums[MaxElIndex]) {
+            SecMaxElIndex = score_sec;
+        }
+    }
+    
+    cout << "The second greatest array element is " << randNums[SecMaxElIndex];
+    
+    //Task 4
+    int array_length;
+    int zero_amount = 0;
+    srand(time(NULL));
+    
+    cout << "Enter a custom array length that you need: ";
+    cin >> array_length;
+    
+    int randNums[array_length] = {};
+    
+    cout << "Here's a values array given in the beginning: ";
+    for (int ava = 0; ava < array_length; ava++) {
+        randNums[ava] = rand() % 10 - 3;
+        
+        cout << randNums[ava] << " ";
+    }
+    cout << endl;
+    
+    for (int a = 0; a < array_length; a++) {
+        if (randNums[a] == 0) {
+            zero_amount += 1;
+            
+            cout << "The index of the first zero element: " << a;
+            break;
+        }
+    }
+    
+    if (zero_amount == 0) {
+        cout << "There aren't any zero elements in the array.";
+    }
+}
